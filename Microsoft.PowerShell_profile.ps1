@@ -14,3 +14,7 @@ function mkcdir([string] $args1) {
     New-Item -Name "$args1" -ItemType "directory" -Path .
     Set-Location "$args1"
 }
+
+function sln { 
+    Invoke-Item *.sln
+}
