@@ -18,3 +18,14 @@ function mkcdir([string] $args1) {
 function sln { 
     Invoke-Item *.sln
 }
+
+function git-update([Parameter(Mandatory=$false)][string] $mainBranch = "main") {
+    git checkout $mainBranch
+    git pull
+    git fetch -ap
+}
+
+function git-clean-all-branches {
+    git for-each-ref --format '%(refname:short)' refs/heads | ForEach-Object { If("main","master"-notcontains $_) { git branch $_ -D} }
+}
+
